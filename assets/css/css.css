@@ -1,0 +1,44 @@
+
+/* If screen size is LESS than 870px wide */
+@media (max-width: 870px){ 
+    /*HEADER*/
+    #logo a{
+        font-size: 27px;
+        letter-spacing: 1px;
+        margin-top: 0px;
+        padding-top: 27px;
+        margin-left: 40px;
+    }
+    
+    /*LATERAL*/
+    input[type="password"],
+    input[type="email"]{
+        width: 85%;
+    }
+    
+    #lateral{
+        width: 22%;
+        min-height: 500px;
+        float: left;
+        margin-top: 20px;
+        margin-left: 10px;
+    }
+    
+    #lateral h3{
+        width: 90%;
+    }
+    
+    /*CENTRAL*/
+    #central{
+        width: 65%;   
+    }
+    
+    /*PRODUCTOS*/
+    .product{
+        width: 28%;
+    }
+    
+    .product img{
+        height:120px;
+    }
+}
