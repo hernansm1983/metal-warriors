@@ -5,7 +5,8 @@ require_once 'models/producto.php';
 
 class categoriaController{
     
-    public function index(){
+    public function index(){ // listado de todas las categorias
+        
         Utils::isAdmin(); //Si no es Admin redirecciona al Index
         $categoria = new Categoria();
         $categorias = $categoria->getAll();
@@ -42,7 +43,9 @@ class categoriaController{
     }
     
     
-    public function editar(){ 
+    
+    public function editar(){ // carga la vista de edicion
+        
         Utils::isAdmin(); //Si no es Admin redirecciona al Index
         
         if(isset($_GET['id'])){
@@ -54,10 +57,7 @@ class categoriaController{
             $categoria = new Categoria();
             $categoria->setId($id);
             $cat = $categoria->getOne();
-            
-            //showArray($categoria);
-            
-            
+                       
             require_once 'views/categoria/crear.php';
         }else{
             header('location:'.base_url.'categoria/index');
@@ -66,13 +66,16 @@ class categoriaController{
     }
     
     
-    
-    public function crear(){
+        
+    public function crear(){ // carga la vista de alta de nuevas categorias
         Utils::isAdmin(); //Si no es Admin redirecciona al Index
         require_once 'views/categoria/crear.php';
     }
     
-    public function save(){
+    
+    
+    public function save(){ // se encarga de crear o editar, segun reciba o no el ID
+        
         Utils::isAdmin(); //Si no es Admin redirecciona al Index
         if(isset($_POST)){
             //showArray($_SESSION);
@@ -102,7 +105,7 @@ class categoriaController{
                 
                     $guardar_categoria = true;
                     
-                    
+                    // si recibe el ID hace el UPDATE, sino crea una nueva categoria
                     if(isset($_GET['id'])){
                         
                         $id = $_GET['id'];
@@ -113,8 +116,7 @@ class categoriaController{
                         $save = $categoria->save();    
                     }
                     
-                    
-                    
+                                        
                     if($save){
                         $_SESSION['nueva_categoria'] = "complete";
                        
@@ -129,7 +131,9 @@ class categoriaController{
         }
     }
     
-    public function delete(){
+    
+    
+    public function delete(){ // elimina una categoria
         
         Utils::isAdmin(); //Si no es Admin redirecciona al Index
         if(isset($_GET['id'])){

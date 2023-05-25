@@ -5,14 +5,15 @@ require_once 'models/producto.php';
 class carritoController{
     
     
-    public function index(){
+    public function index(){ // carga el index del carrito de compra
        
         if(isset($_SESSION['carrito'])) $carrito = $_SESSION['carrito'];
         require_once 'views/carrito/index.php';
     }
     
     
-    public function add(){
+    
+    public function add(){ // se encarga de agregar al carrito el producto elegido
     
         if(isset($_GET['id'])){
             $producto_id = $_GET['id'];
@@ -52,7 +53,9 @@ class carritoController{
         header("location:".base_url."carrito/index");
     }
     
-    public function up(){
+    
+    
+    public function up(){ // se encarga de agregar una unidad al carrito
         if(isset($_GET['index'])){
             $index = $_GET['index'];
             $_SESSION['carrito'][$index]['unidades']++;
@@ -62,7 +65,8 @@ class carritoController{
     }
     
     
-    public function down(){
+    
+    public function down(){ // se encarga de restar una unidad al carrito
         if(isset($_GET['index'])){
             $index = $_GET['index'];
             if($_SESSION['carrito'][$index]['unidades'] > 1){
@@ -75,7 +79,8 @@ class carritoController{
     }
     
     
-    public function remove(){
+    
+    public function remove(){ // se encarga de eliminar un producto del carrito
         
         if(isset($_GET['index'])){
             $index = $_GET['index'];
@@ -88,7 +93,8 @@ class carritoController{
     }
     
     
-    public function delete_all(){
+    
+    public function delete_all(){ // se encarga de vaciar el carrito
         
         unset($_SESSION['carrito']);
         header("location:".base_url);

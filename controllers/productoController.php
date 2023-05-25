@@ -5,16 +5,18 @@ require_once 'models/producto.php';
 
 class productoController{
     
-    public function index(){
+    public function index(){ // se encarga de mostrar los productos destacados en el index
+        
         $producto = new Producto();
         $productos = $producto->getRandom(15);
-        //var_dump($productos->fetch_object());
-        //echo "Controlador PRODUCTOS, accion Index";
+        
         require "views/producto/destacados.php";
     }
     
     
-    public function ver(){
+    
+    public function ver(){ // carga la vista del detalle de cada producto
+        
         if(isset($_GET['id'])){
             
             $id = $_GET['id'];
@@ -29,7 +31,9 @@ class productoController{
     }
     
     
-    public function gestion(){
+    
+    public function gestion(){ // carga la lista de todos los productos 
+        
         Utils::isAdmin();
         
         $producto = new Producto();
@@ -39,14 +43,17 @@ class productoController{
     }
     
     
-    public function crear(){
+    
+    public function crear(){ //carga ls vista de alta de productos
         Utils::isAdmin();
         require_once 'views/producto/crear.php';
     }
     
     
-    public function save(){
-        Utils::isAdmin();
+    
+    public function save(){ // Crea o edita un producto, segun reciba o no el ID
+        
+        Utils::isAdmin(); // si no es Admin, redirecciona al index
         if(isset($_POST)){
             $categoria_id = isset($_POST['categoria_id']) ? $_POST['categoria_id'] : false;
             $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
@@ -82,6 +89,7 @@ class productoController{
                     }
                 }
                 
+                // si recibe el ID edita el producto, sino hace un INSERT
                 if(isset($_GET['id'])){
                     
                     $id = $_GET['id'];
@@ -109,8 +117,9 @@ class productoController{
     
     
     
-    public function editar(){
-        Utils::isAdmin();
+    public function editar(){ //carga la vista de edicion del producto
+        
+        Utils::isAdmin(); // si no es Admin, redirecciona al index
         
         if(isset($_GET['id'])){
             
@@ -129,8 +138,9 @@ class productoController{
     
     
     
-    public function eliminar(){
-        Utils::isAdmin();
+    public function eliminar(){ // se encarga de eliminar un producto
+        
+        Utils::isAdmin(); // si no es Admin, redirecciona al index
         
         if(isset($_GET['id'])){
             
@@ -154,9 +164,9 @@ class productoController{
     
     
     
-    public function eliminarImagen(){
-        Utils::isAdmin();
+    public function eliminarImagen(){ //se encarga de eliminar la imagen del producto existente
         
+        Utils::isAdmin(); // si no es Admin, redirecciona al index
         
         if(isset($_GET['id'])){
             

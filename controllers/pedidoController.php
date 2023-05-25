@@ -5,12 +5,15 @@ require_once 'models/producto.php';
 class pedidoController{
     
     
-    public function hacer(){
+    public function hacer(){ // carga ls vista de datos de envio del pedido
         
         require_once 'views/pedido/hacer.php';
     }
     
-    public function confirmado(){
+    
+    
+    public function confirmado(){ // se encarga de confirmar el pedido
+        
         if(isset($_SESSION['identity'])){
             
             $usuario_id = $_SESSION['identity']->id;
@@ -83,7 +86,8 @@ class pedidoController{
     }
     
     
-    public function mis_pedidos(){
+    
+    public function mis_pedidos(){ // se encarga de mostrar solo los pedidos hechos por el usuario
         Utils::isIdentity();
         $usuario_id = $_SESSION['identity']->id;
         $pedido = new Pedido();
@@ -97,8 +101,10 @@ class pedidoController{
     }
     
     
-    public function detalle(){
-        Utils::isIdentity();
+    
+    public function detalle(){ // se encarga de mostrar el detalle del pedido
+        
+        Utils::isIdentity(); //si no esta logueado, redirecciona
         
         if(isset($_GET['id'])){
             $pedido_id = $_GET['id'];
@@ -124,8 +130,10 @@ class pedidoController{
     }
     
     
-    public function gestion(){
-        Utils::isAdmin();
+    
+    public function gestion(){ // se encarga de mostrar la lista de todos los pedidos
+        
+        Utils::isAdmin(); // si no es Admin, redirecciona
         $gestion = true;
         
         $pedido = new Pedido();
@@ -135,8 +143,10 @@ class pedidoController{
     }
     
     
-    public function estado(){
-        Utils::isAdmin();
+    
+    public function estado(){ // se encarga de modificar el estado de un pedido
+        
+        Utils::isAdmin(); // si no es admin, redirecciona
         $gestion = true;
         
         if(isset($_POST['estado']) && isset($_POST['pedido_id'])){
@@ -159,8 +169,7 @@ class pedidoController{
         }else{
             header('location:'.base_url);
         }
-        
-        
+          
     }
     
 }

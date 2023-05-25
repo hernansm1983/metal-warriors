@@ -4,16 +4,21 @@ require_once 'models/usuario.php';
 
 class usuarioController{
     
+    
     public function index(){
-        echo "Controlador USUARIOS accion INDEX";
-        require_once 'views/producto/destacados.php';
+        
+        header("Location:".base_url);
     }
     
-    public function registro(){
+    
+    
+    public function registro(){ // carga la vista de registro de usuarios
         require_once 'views/usuario/registro.php';
     }
     
-    public function save(){
+    
+    
+    public function save(){ // guarda los datos del registro de usuarios
         
         if(isset($_POST)){
             
@@ -100,7 +105,8 @@ class usuarioController{
     }
     
     
-    public function login(){
+    
+    public function login(){ // se encarga del login de usuario
         
         if(isset($_POST)){
             //IDENTIFICAR AL USUARIO
@@ -126,7 +132,9 @@ class usuarioController{
     }
     
     
-    public function logout(){
+    
+    public function logout(){ //se encarga de cerrar la session de usuario
+        
         if(isset($_SESSION['identity'])){
             unset($_SESSION['identity']);
         }

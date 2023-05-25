@@ -4,7 +4,7 @@
 
             <!-- FOOTER -->
             <footer id="footer">
-                <p>Desarrollado por Hernan Diego San Martin &copy; <?=date("Y");?></p>
+                <p>Desarrollado por <a href="mailto:her_san_martin@hotmail.com">Hernan Diego San Martin</a> &copy; <?=date("Y");?></p>
             </footer>
         </div>
     </body>
