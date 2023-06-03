@@ -4,7 +4,7 @@ class Database{
     public static function connect(){
         if($_SERVER['SERVER_NAME'] == 'localhost'){
             
-            $db = new mysqli('localhost', 'root', '', 'e_shop');
+            $db = new mysqli('localhost', 'root', '', 'metal_warriors');
             
         }else{
             
