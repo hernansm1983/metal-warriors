@@ -8,7 +8,7 @@ class Database{
             
         }else{
             
-            $db = new mysqli('mysql-artemisa.alwaysdata.net', 'artemisa', '!Q2w3e4r%T', 'artemisa_eshop');
+            $db = new mysqli('mysql-artemisa.alwaysdata.net', 'artemisa', '!Q2w3e4r%T', 'artemisa_metal_warriors');
             
         }
         $db->query("SET NAMES 'utf8'");
